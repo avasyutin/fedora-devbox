@@ -1,0 +1,4 @@
+- name: 'add repo'
+  shell: 'curl --silent --location https://rpm.nodesource.com/setup_5.x | sudo bash -'
+- name: 'dnf | install'
+  dnf: name=nodejs state=latest

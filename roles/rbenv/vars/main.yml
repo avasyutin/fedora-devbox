@@ -1,0 +1,7 @@
+rbenv_root: '{{lookup("env", "HOME")}}/.rbenv'
+global_gems:
+  - bundler
+  - foreman
+  - rails
+  - sinatra
+  - hanami

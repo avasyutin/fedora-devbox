@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  roles:
+    # - { role: system_common, become: true }
+    - { role: nvim, become: true }
+    # - { role: nodejs, become: true }
+    # - rbenv

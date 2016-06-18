@@ -1,0 +1,37 @@
+- name: 'dnf | update'
+  dnf: name=* state=latest
+- name: install the 'Development tools' package group
+  dnf: name="@Development tools" state=present
+- name: 'dnf | install plugins core'
+  dnf: name=dnf-plugins-core state=latest
+- name: 'dnf | install dependencies'
+  dnf: name={{item}} state=latest
+  with_items:
+    - tmux
+    - vim
+    - git
+    - zip
+    - unzip
+    - htop
+    - sysstat
+    - lsof
+    - strace
+    - iotop
+    - bzip2
+    - iftop
+    - zlib
+    - zlib-devel
+    - readline
+    - readline-devel
+    - libyaml-devel
+    - libffi-devel
+    - openssl-devel
+    - bzip2
+    - libtool
+    - ImageMagick
+    - sqlite
+    - sqlite-devel
+    - p7zip
+    - the_silver_searcher
+    - cowsay
+    - fortune-mod

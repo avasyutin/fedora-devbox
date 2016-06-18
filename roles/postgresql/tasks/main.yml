@@ -1,0 +1,33 @@
+- name: yum | exclude old repos
+  ini_file: 'dest=/etc/yum.repos.d/CentOS-Base.repo section="{{item}}" option="exclude" value="postgresql*"'
+  with_items:
+    - base
+    - updates
+
+- name: yum | add repo
+  yum: 'name=http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm state=present'
+
+- name: 'yum | install'
+  yum: 'name="{{item}}" state=latest'
+  with_items:
+    - postgresql95
+    - postgresql95-server
+    - postgresql95-devel
+    - postgresql95-contrib
+    - python-psycopg2
+- name: initdb
+  become: true
+  shell: '/usr/pgsql-9.5/bin/postgresql95-setup initdb'
+  ignore_errors: yes
+
+- name: local ipv4 md5 connection
+  replace: "dest=/var/lib/pgsql/9.5/data/pg_hba.conf regexp='127.0.0.1/32            ident' replace='127.0.0.1/32            md5'"
+- name: local ipv6 md5 connection
+  replace: "dest=/var/lib/pgsql/9.5/data/pg_hba.conf regexp='::1/128                 ident' replace='::1/128                 md5'"
+
+- name: restart
+  action: service name=postgresql-9.5 state=restarted
+
+- name: path to pg bin
+  become_user: apps
+  lineinfile: "dest=/home/{{apps_user}}/.bashrc line='export PATH=$PATH:/usr/pgsql-9.5/bin/' insertafter='EOF' state=present"

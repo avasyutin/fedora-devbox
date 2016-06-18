@@ -1,0 +1,16 @@
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+.irb-history
+*.swp
+.DS_Store
+
+# Ignore all IDE files.
+*.sublime-project
+*.sublime-workspace
+.idea
+/coverage
+
+# Ignore unwanted or secure provision files.
+.ansible_vault_pass
