@@ -1,4 +1,6 @@
-- name: 'add repo'
+- name: add repo
   shell: 'curl --silent --location https://rpm.nodesource.com/setup_5.x | sudo bash -'
-- name: 'dnf | install'
+- name: dnf | install
   dnf: name=nodejs state=latest
+- name: bower | install
+  npm: name=bower global=yes

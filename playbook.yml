@@ -2,6 +2,8 @@
 - hosts: localhost
   roles:
     # - { role: system_common, become: true }
-    - { role: nvim, become: true }
-    # - { role: nodejs, become: true }
+    # - { role: mysql, become: true }
+    # - { role: postgresql, become: true }
+    # - { role: nvim, become: true }
+    - { role: nodejs, become: true }
     # - rbenv

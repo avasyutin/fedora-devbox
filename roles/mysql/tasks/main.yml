@@ -1,25 +1,26 @@
-- name: 'yum | install'
-  yum: name={{item}} state=latest
+- name: check mysql installed
+  command: test -x /usr/bin/mysql
+  register: mysql_installed
+  ignore_errors: yes
+- name: dnf | install
+  dnf: name={{item}} state=latest
   with_items:
     - mariadb
     - mariadb-server
     - mariadb-devel
     - MySQL-python
-- name: 'restart service'
-  action: service name=mariadb state=restarted
-
-- name: 'update root password'
-  become: false
-  mysql_user: 'name=root host=localhost password={{db_root_password}} priv=*.*:ALL,GRANT'
-
-- name: 'Create .my.cnf file with root password credentials for dvps_user'
-  template: 'src=dot.my.cnf.j2 dest=/home/{{dvps_user}}/.my.cnf owner={{dvps_user}} group={{dvps_user}}'
-- name: 'Create .my.cnf file with root password credentials for apps_user'
-  template: 'src=dot.my.cnf.j2 dest=/home/{{apps_user}}/.my.cnf owner={{apps_user}} group={{apps_user}}'
-- name: 'Create .my.cnf file with root password credentials for developers'
-  template: 'src=dot.my.cnf.j2 dest=/home/{{item}}/.my.cnf owner={{item}} group={{item}}'
-  with_items: '{{developers}}'
-
-- name: 'remove test datbase'
-  become: false
+  when: mysql_installed|failed
+- name: start service
+  service: name=mariadb state=started
+  when: mysql_installed|failed
+- name: update root password
+  become_user: mysql
+  mysql_user: 'login_user=root login_password="" name=root host=localhost password=root priv=*.*:ALL,GRANT'
+  when: mysql_installed|failed
+- name: remove test datbase
+  become_user: mysql
   mysql_db: db=test state=absent
+  when: mysql_installed|failed
+- name: restart mysql
+  service: name=mariadb state=restarted enabled=yes
+  when: mysql_installed|failed
