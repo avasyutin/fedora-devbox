@@ -7,6 +7,13 @@
 3. Install ansible.
 4. Install python2-dnf.
 
+## Neovim
+
+After neovim was installed run it and execute:
+
+1. :PlugInstall (and restart Neovim).
+2. :UpdateRemotePlugins (and restart Neovim also).
+
 ## Hints
 
 Execute roles are tagged by `pg` tag:
