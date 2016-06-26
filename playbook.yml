@@ -7,7 +7,7 @@
     - { role: postgresql, tags: pg }
     - { role: redis, tags: redis }
     - { role: nvim, tags: nvim }
-    - { role: nodejs }
+    - { role: nodejs, tags: node }
 
 - hosts: localhost
   roles:

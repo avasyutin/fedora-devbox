@@ -10,8 +10,11 @@
     - mariadb-devel
     - MySQL-python
   when: mysql_installed|failed
-- name: start service
-  service: name=mariadb state=started
+- name: copy config
+  copy: src=mariadb-server.cnf dest=/etc/my.cnf.d/mariadb-server.cnf owner=mysql group=mysql
+  when: mysql_installed|failed
+- name: restart service
+  service: name=mariadb state=restarted
   when: mysql_installed|failed
 - name: update root password
   become_user: mysql

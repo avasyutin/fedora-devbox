@@ -28,6 +28,8 @@
     - openssl-devel
     - bzip2
     - libtool
+    - libcurl
+    - libcurl-devel
     - ImageMagick
     - sqlite
     - sqlite-devel
