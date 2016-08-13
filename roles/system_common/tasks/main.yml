@@ -38,3 +38,4 @@
     - cowsay
     - fortune-mod
     - gcc-c++
+    - emacs
