@@ -6,6 +6,7 @@
 2. Setup sudo without password.
 3. Install ansible.
 4. Install python2-dnf.
+5. Install libselinux-python
 
 ## Neovim
 
