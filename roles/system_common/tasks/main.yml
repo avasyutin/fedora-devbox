@@ -34,6 +34,7 @@
     - sqlite
     - sqlite-devel
     - p7zip
+    - p7zip-plugins
     - the_silver_searcher
     - cowsay
     - fortune-mod
