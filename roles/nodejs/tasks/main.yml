@@ -1,4 +1,7 @@
 - name: dnf | install
-  dnf: name=nodejs state=latest
+  dnf: name={{item}} state=latest
+  with_items:
+    - nodejs
+    - npm
 - name: bower | install
   npm: name=bower global=yes
