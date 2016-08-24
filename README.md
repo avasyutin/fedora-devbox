@@ -7,7 +7,7 @@
 3. Install ansible.
 4. Install python2-dnf.
 5. Install libselinux-python.
-6. Install ruby via dnf.
+6. Install ruby, ruby-devel via dnf.
 
 ## Neovim
 
@@ -25,3 +25,18 @@ $ ansible-playbook --tags pg -i inventory.ini playbook.yml --vault-password-file
 ```
 
 For debug output we can add also `-vvvv` parameter.
+
+## Testing with Vagrant
+
+Install:
+
+1. VirtualBox
+2. Vagrant
+3. vagrant-vbguest plugin
+3. libvirt
+4. vagrant-libvirt
+5. libvirt-devel
+
+After that, execute `vagrant up` in the project directory and wait until virtual machine will be ready.
+
+TODO: ansible, vm checking instructions
