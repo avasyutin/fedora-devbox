@@ -5,6 +5,7 @@
 .irb-history
 *.swp
 .DS_Store
+.vagrant
 
 # Ignore all IDE files.
 *.sublime-project

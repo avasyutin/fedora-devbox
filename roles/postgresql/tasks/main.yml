@@ -21,8 +21,10 @@
 - name: restart
   service: name=postgresql state=restarted enabled=true
 - name: set current user as superuser
+  become: true
   become_user: postgres
-  postgresql_user: name={{lookup('env', 'USER')}} state=present role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION
+  postgresql_user: 'name={{dev_user}} state=present role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION'
 - name: create db for current user
+  become: true
   become_user: postgres
-  postgresql_db: name={{lookup('env', 'USER')}}
+  postgresql_db: 'name={{dev_user}}'

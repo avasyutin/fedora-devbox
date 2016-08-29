@@ -1,4 +1,4 @@
-rbenv_root: '{{lookup("env", "HOME")}}/.rbenv'
+rbenv_root: '/home/{{dev_user}}/.rbenv'
 global_gems:
   - bundler
   - foreman

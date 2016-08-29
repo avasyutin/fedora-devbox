@@ -1,14 +1,16 @@
 ---
 - hosts: localhost
-  become: true
   roles:
     - { role: system_common }
-    - { role: mysql, tags: mysql }
-    - { role: postgresql, tags: pg }
     - { role: redis, tags: redis }
     - { role: nvim, tags: nvim }
     - { role: nodejs, tags: node }
+    - { role: mysql, tags: mysql }
+    - { role: postgresql, tags: pg }
+    - { role: docker, tags: docker }
 
 - hosts: localhost
+  become: true
+  become_user: '{{dev_user}}'
   roles:
-    - rbenv
+    - { role: rbenv, tags: ruby }

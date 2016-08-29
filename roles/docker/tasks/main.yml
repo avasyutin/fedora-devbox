@@ -1,0 +1,5 @@
+- name: dnf | install
+  dnf: name={{item}} state=latest
+  with_items:
+    - docker
+    - docker-compose

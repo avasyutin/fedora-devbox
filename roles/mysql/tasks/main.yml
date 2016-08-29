@@ -17,12 +17,10 @@
   service: name=mariadb state=restarted
   when: mysql_installed|failed
 - name: update root password
-  become_user: mysql
-  mysql_user: 'login_user=root login_password="" name=root host=localhost password=root priv=*.*:ALL,GRANT'
+  mysql_user: login_user=root login_password="" name=root host=localhost password=root priv=*.*:ALL,GRANT
   when: mysql_installed|failed
 - name: remove test datbase
-  become_user: mysql
-  mysql_db: db=test state=absent
+  mysql_db: login_user=root login_password=root db=test state=absent
   when: mysql_installed|failed
 - name: restart mysql
   service: name=mariadb state=restarted enabled=yes

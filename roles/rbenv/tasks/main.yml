@@ -7,10 +7,10 @@
 - name: 'get ruby-build'
   git: 'repo=git://github.com/sstephenson/ruby-build.git dest={{rbenv_root}}/plugins/ruby-build accept_hostkey=yes update=yes'
 - name: 'add bin to path'
-  shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> {{lookup("env", "HOME")}}/.bashrc
+  shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/{{dev_user}}/.bashrc
   when: 'rbenv_installed|failed'
 - name: 'init'
-  shell: echo 'eval "$(rbenv init -)"' >> {{lookup("env", "HOME")}}/.bashrc
+  shell: echo 'eval "$(rbenv init -)"' >> /home/{{dev_user}}/.bashrc
   when: 'rbenv_installed|failed'
 - name: 'check ruby installed'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv versions | grep {{ruby_version}}'
@@ -25,7 +25,7 @@
 - name: 'rehash'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv rehash'
 - name: 'create .gemrc'
-  lineinfile: 'dest=/home/{{apps_user}}/.gemrc owner={{lookup("env", "USER")}} group={{lookup("env", "USER")}} mode=0644 line="gem: --no-ri --no-rdoc" create=yes'
+  lineinfile: 'dest=/home/{{dev_user}}/.gemrc owner={{dev_user}} group={{dev_user}} mode=0644 line="gem: --no-ri --no-rdoc" create=yes'
   when: 'rbenv_installed|failed'
 - name: 'ruby | rubygems update --system'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/versions/{{ruby_version}}/bin:$PATH" gem update --system'
