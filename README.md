@@ -2,26 +2,26 @@
 
 ## Preprequisites
 
-1. Setup ssh.
-2. Setup sudo without password.
-3. Install ansible.
-4. Install python2-dnf.
-5. Install libselinux-python.
-6. Install ruby, ruby-devel via dnf.
+1. Setup sudo without password.
+2. Install ansible.
+3. Install python2-dnf.
+4. Install libselinux-python.
 
-## Neovim
+## Run
 
-After neovim was installed run it and execute:
+1. Run behalf superuser.
+2. You HAVE TO pass a developer account name as command line parameter.
 
-1. :PlugInstall (and restart Neovim).
-2. :UpdateRemotePlugins (and restart Neovim also).
+```bash
+$ sudo ansible-playbook -i inventory.ini playbook.yml --extra-vars='dev_user=johndoe'
+```
 
 ## Hints
 
 Execute roles are tagged by `pg` tag:
 
 ```bash
-$ ansible-playbook --tags pg -i inventory.ini playbook.yml --vault-password-file .ansible_vault_pass
+$ sudo ansible-playbook --tags pg -i inventory.ini playbook.yml
 ```
 
 For debug output we can add also `-vvvv` parameter.
@@ -30,13 +30,14 @@ For debug output we can add also `-vvvv` parameter.
 
 Install:
 
-1. VirtualBox
-2. Vagrant
-3. vagrant-vbguest plugin
-3. libvirt
-4. vagrant-libvirt
-5. libvirt-devel
+1. ruby
+2. ruby-devel
+3. VirtualBox
+4. Vagrant
+5. vagrant-vbguest plugin
+6. libvirt
+7. vagrant-libvirt
+8. libvirt-devel
 
 After that, execute `vagrant up` in the project directory and wait until virtual machine will be ready.
-
-TODO: ansible, vm checking instructions
+When VM is ready, execute `vagrant ssh` and check if everything works and installed fine.

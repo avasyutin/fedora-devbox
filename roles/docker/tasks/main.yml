@@ -3,3 +3,9 @@
   with_items:
     - docker
     - docker-compose
+- name: add docker group
+  group: name=docker state=present
+- name: add {{dev_user}} to docker group
+  user: name={{dev_user}} group=docker
+- name: restart
+  service: name=docker state=restarted enabled=true
