@@ -40,3 +40,5 @@
     - fortune-mod
     - gcc-c++
     - emacs
+    - zsh
+    - ruby
