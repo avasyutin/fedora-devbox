@@ -32,12 +32,9 @@ Install:
 
 1. ruby
 2. ruby-devel
-3. VirtualBox
+3. VirtualBox 5.0 (not 5.1!)
 4. Vagrant
 5. vagrant-vbguest plugin
-6. libvirt
-7. vagrant-libvirt
-8. libvirt-devel
 
 After that, execute `vagrant up` in the project directory and wait until virtual machine will be ready.
 When VM is ready, execute `vagrant ssh` and check if everything works and installed fine.
