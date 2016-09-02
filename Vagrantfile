@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
   SHELL
   
   opts = {
-    keep_color: false,
+    keep_color: true,
     privileged: true,
     env: {
       'ANSIBLE_NOCOWS' => 1

@@ -16,7 +16,7 @@
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv versions | grep {{ruby_version}}'
   register: 'ruby_installed'
   ignore_errors: yes
-- name: 'install ruby'
+- name: install ruby
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv install {{ruby_version}}'
   when: 'ruby_installed|failed'
 - name: 'set global ruby'
@@ -25,8 +25,7 @@
 - name: 'rehash'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv rehash'
 - name: 'create .gemrc'
-  lineinfile: 'dest=/home/{{dev_user}}/.gemrc owner={{dev_user}} group={{dev_user}} mode=0644 line="gem: --no-ri --no-rdoc" create=yes'
-  when: 'rbenv_installed|failed'
+  lineinfile: 'dest=/home/{{dev_user}}/.gemrc owner={{dev_user}} group={{dev_user}} mode=0644 line="gem: --no-ri --no-rdoc" create=yes state=present'
 - name: 'ruby | rubygems update --system'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/versions/{{ruby_version}}/bin:$PATH" gem update --system'
 - name: 'ruby | rubygems update'
