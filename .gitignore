@@ -6,6 +6,7 @@
 *.swp
 .DS_Store
 .vagrant
+playbook.retry
 
 # Ignore all IDE files.
 *.sublime-project
