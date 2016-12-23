@@ -5,3 +5,4 @@ global_gems:
   - rails
   - sinatra
   - hanami
+  - ripper-tags
