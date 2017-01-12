@@ -46,3 +46,4 @@
     - kernel-devel
     - busybox
     - biosdevname
+    - fedora-packager
