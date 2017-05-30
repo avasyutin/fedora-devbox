@@ -4,5 +4,5 @@ global_gems:
   - foreman
   - rails
   - sinatra
-  - hanami
   - ripper-tags
+  - tmuxinator
