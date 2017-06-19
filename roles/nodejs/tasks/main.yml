@@ -3,5 +3,8 @@
   with_items:
     - nodejs
     - npm
-- name: bower | install
-  npm: name=bower global=yes
+- name: packages | install
+  npm: name={{item}} global=yes
+  with_items:
+    - bower
+    - yarn

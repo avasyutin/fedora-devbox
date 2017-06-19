@@ -1,6 +1,6 @@
 - hosts: localhost
   roles:
-    - { role: system_common }
+    - { role: system_common, tags: system }
     - { role: redis, tags: redis }
     - { role: nvim, tags: nvim }
     - { role: nodejs, tags: node }
