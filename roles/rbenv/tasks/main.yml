@@ -17,10 +17,10 @@
   register: 'ruby_installed'
   ignore_errors: yes
 - name: install ruby
-  shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv install {{ruby_version}}'
-  when: 'ruby_installed|failed'
-- name: 'set global ruby'
-  when: 'ruby_installed|failed'
+  shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv install -p {{ruby_version}} <<(curl -sSL https://bugs.ruby-lang.org/attachments/download/6655/ruby_2_3_gcc7.patch)'
+  when: ruby_installed|failed
+- name: set global ruby
+  when: ruby_installed|failed
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv global {{ruby_version}}'
 - name: 'rehash'
   shell: 'RBENV_ROOT={{rbenv_root}} PATH="$RBENV_ROOT/bin:$PATH" rbenv rehash'

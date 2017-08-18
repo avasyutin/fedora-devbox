@@ -1,10 +1,10 @@
-- name: 'dnf | update'
+- name: update packages
   dnf: name=* state=latest
 - name: install the 'Development tools' package group
   dnf: name="@Development tools" state=present
-- name: 'dnf | install plugins core'
+- name: install plugins core
   dnf: name=dnf-plugins-core state=latest
-- name: 'dnf | install dependencies'
+- name: install dependencies
   dnf: name={{item}} state=latest
   with_items:
     - tmux
@@ -26,7 +26,6 @@
     - readline-devel
     - libyaml-devel
     - libffi-devel
-    - openssl-devel
     - bzip2
     - libtool
     - libcurl
@@ -51,3 +50,8 @@
     - sbt
     - discount
     - clisp
+# FIXME: Remove when ruby 2.3.5 will be released (https://github.com/rbenv/ruby-build/issues/1115)
+- name: install openssl-devel
+  shell: dnf install openssl-devel --skip-broken -y
+- name: downgrade compat-openssl-devel
+  shell: dnf install compat-openssl10-devel --allowerasing -y

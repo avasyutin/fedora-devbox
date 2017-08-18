@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = 'fedora/25-cloud-base'
+  config.vm.box = 'fedora/26-cloud-base'
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -65,11 +65,11 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   shell_script = <<-SHELL
-    sudo dnf install -y python python2-dnf libselinux-python ansible
-    cd /vagrant
-    ansible-playbook -i inventory.ini playbook.yml --extra-vars='dev_user=vagrant'
+    sudo dnf install -y python python2-dnf libselinux-python
   SHELL
   
+    # cd /vagrant
+    # ansible-playbook -i inventory.ini playbook.yml --extra-vars='dev_user=vagrant' -vvv
   opts = {
     keep_color: true,
     privileged: true,
@@ -81,8 +81,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'shell', opts
 
-  # config.vm.provision 'ansible' do |ansible|
-  #   ansible.verbose = 'vv'
-  #   ansible.playbook = 'playbook.yml'
-  # end
+  config.vm.provision "ansible" do |ansible|
+    # ansible.verbose = 'vv'
+    ansible.playbook = "playbook.yml"
+  end
 end
