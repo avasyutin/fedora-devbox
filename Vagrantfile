@@ -68,8 +68,6 @@ Vagrant.configure(2) do |config|
     sudo dnf install -y python python2-dnf libselinux-python
   SHELL
   
-    # cd /vagrant
-    # ansible-playbook -i inventory.ini playbook.yml --extra-vars='dev_user=vagrant' -vvv
   opts = {
     keep_color: true,
     privileged: true,
@@ -84,5 +82,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     # ansible.verbose = 'vv'
     ansible.playbook = "playbook.yml"
+    ansible.raw_arguments = [
+      '--extra-vars',
+      'dev_user=vagrant'
+    ]
   end
 end

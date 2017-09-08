@@ -10,6 +10,6 @@
 
 - hosts: all
   become: true
-  become_user: '{{dev_user}}'
+  become_user: '{{ dev_user }}'
   roles:
     - { role: rbenv, tags: ruby }

@@ -30,11 +30,9 @@ For debug output we can add also `-vvvv` parameter.
 
 Install:
 
-1. ruby
-2. ruby-devel
-3. VirtualBox 5.0 (not 5.1!)
-4. Vagrant
-5. vagrant-vbguest plugin
+1. VirtualBox 5.0 (not 5.1!)
+2. Vagrant
+3. vagrant-vbguest plugin
 
 After that, execute `vagrant up` in the project directory and wait until virtual machine will be ready.
 When VM is ready, execute `vagrant ssh` and check if everything works and installed fine.
