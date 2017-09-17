@@ -30,9 +30,10 @@ For debug output we can add also `-vvvv` parameter.
 
 Install:
 
-1. VirtualBox 5.0 (not 5.1!)
+1. VirtualBox
 2. Vagrant
 3. vagrant-vbguest plugin
+4. Ansible
 
 After that, execute `vagrant up` in the project directory and wait until virtual machine will be ready.
 When VM is ready, execute `vagrant ssh` and check if everything works and installed fine.
