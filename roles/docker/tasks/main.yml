@@ -1,11 +1,19 @@
-- name: dnf | install
-  dnf: name={{item}} state=latest
-  with_items:
-    - docker
-    - docker-compose
-- name: add docker group
-  group: name=docker state=present
-- name: add {{dev_user}} to docker group
-  user: name={{dev_user}} groups=docker append=true
-- name: restart
+- name: get script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: 700
+- name: install
+  shell: /tmp/get-docker.sh
+- name: start
   service: name=docker state=restarted enabled=true
+- name: install docker-machine
+  get_url:
+    url: https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-Linux-x86_64
+    dest: /usr/local/bin/docker-machine
+    mode: 0755
+- name: install docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.16.1/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
