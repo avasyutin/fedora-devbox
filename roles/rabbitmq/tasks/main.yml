@@ -8,7 +8,12 @@
   dnf:
     name: https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm
     state: present
+- name: install rabbitmqadmin
+  get_url:
+    url: https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/rabbitmq_v3_6_12/bin/rabbitmqadmin
+    dest: /usr/local/bin/rabbitmqadmin
+    mode: 0655
 - name: restart
   action: service name=rabbitmq-server state=restarted enabled=true
-- name: disable management console
+- name: enable management console
   shell: rabbitmq-plugins enable rabbitmq_management
