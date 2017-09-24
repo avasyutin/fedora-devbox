@@ -1,0 +1,14 @@
+- name: install erlang
+  dnf: name=erlang state=latest
+- name: add rabbitmq rpm key
+  rpm_key:
+    state: present
+    key: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+- name: install
+  dnf:
+    name: https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm
+    state: present
+- name: restart
+  action: service name=rabbitmq-server state=restarted enabled=true
+- name: disable management console
+  shell: rabbitmq-plugins enable rabbitmq_management
