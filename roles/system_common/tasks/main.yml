@@ -52,6 +52,7 @@
     - clisp
     - pv
     - nmap
+    - fuse-exfat
 - name: install tmuxp
   pip:
     name: tmuxp
