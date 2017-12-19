@@ -1,8 +1,5 @@
 rbenv_root: '/home/{{dev_user}}/.rbenv'
 global_gems:
   - bundler
-  - foreman
   - rails
-  - sinatra
   - ripper-tags
-  - tmuxinator

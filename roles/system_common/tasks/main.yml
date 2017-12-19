@@ -4,59 +4,64 @@
   dnf: name="@Development tools" state=present
 - name: install plugins core
   dnf: name=dnf-plugins-core state=latest
+- name: get Fedora version
+  command: rpm -E %fedora
+  register: fedora_version
 - name: install rpmfusion
-  dnf:
-    name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm'
-    state: installed
+  dnf: name={{item}} state=latest
+  with_items:
+    - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm"
+    - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm"
 - name: install dependencies
   dnf: name={{item}} state=latest
   with_items:
-    - tmux
-    - vim
+    - ImageMagick
+    - biosdevname
+    - busybox
+    - bzip2
+    - clisp
+    - cowsay
     - ctags
+    - discount
+    - emacs
+    - fedora-packager
+    - fortune-mod
+    - fuse-exfat
+    - gcc-c++
     - git
-    - zip
-    - unzip
     - htop
-    - sysstat
-    - lsof
-    - strace
-    - iotop
-    - bzip2
     - iftop
-    - zlib
-    - zlib-devel
-    - readline
-    - readline-devel
-    - libyaml-devel
-    - libffi-devel
-    - bzip2
-    - libtool
+    - iotop
+    - java-9-openjdk-devel
+    - kernel-devel
     - libcurl
     - libcurl-devel
-    - ImageMagick
-    - sqlite
-    - sqlite-devel
+    - libffi-devel
+    - libtool
+    - libyaml-devel
+    - lsof
+    - nmap
+    - openssl-devel
     - p7zip
     - p7zip-plugins
-    - the_silver_searcher
-    - cowsay
-    - fortune-mod
-    - gcc-c++
-    - emacs
-    - zsh
-    - ruby
-    - kernel-devel
-    - busybox
-    - biosdevname
-    - fedora-packager
-    - java-9-openjdk-devel
-    - sbt
-    - discount
-    - clisp
     - pv
-    - nmap
-    - fuse-exfat
+    - python2-devel
+    - readline
+    - readline-devel
+    - ruby
+    - sbt
+    - sqlite
+    - sqlite-devel
+    - strace
+    - sysstat
+    - the_silver_searcher
+    - tmux
+    - unzip
+    - vim
+    - zip
+    - zlib
+    - zlib-devel
+    - zsh
 - name: install tmuxp
   pip:
     name: tmuxp

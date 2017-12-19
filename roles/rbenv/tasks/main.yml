@@ -17,7 +17,7 @@
   register: ruby_installed
   ignore_errors: yes
 - name: install ruby
-  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv install -p {{ ruby_version }} < <(curl -sSL https://bugs.ruby-lang.org/attachments/download/6655/ruby_2_3_gcc7.patch)
+  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv install {{ ruby_version }}
   args:
     executable: /bin/bash
   when: ruby_installed|failed
@@ -33,5 +33,5 @@
 - name: update installed gems
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem update
 - name: install gems
-  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem install {{ item }}
+  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem install -f {{ item }}
   with_items: '{{ global_gems }}'
