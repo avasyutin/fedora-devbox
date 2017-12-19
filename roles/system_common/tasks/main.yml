@@ -4,6 +4,10 @@
   dnf: name="@Development tools" state=present
 - name: install plugins core
   dnf: name=dnf-plugins-core state=latest
+- name: install rpmfusion
+  dnf:
+    name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm'
+    state: installed
 - name: install dependencies
   dnf: name={{item}} state=latest
   with_items:
@@ -46,7 +50,7 @@
     - busybox
     - biosdevname
     - fedora-packager
-    - java-1.8.0-openjdk-devel
+    - java-9-openjdk-devel
     - sbt
     - discount
     - clisp
