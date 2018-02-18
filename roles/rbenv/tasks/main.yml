@@ -4,6 +4,8 @@
   ignore_errors: yes
 - name: clone repo
   git: repo=git://github.com/sstephenson/rbenv.git dest={{ rbenv_root }} accept_hostkey=yes update=yes
+- name: install rbenv-each
+  git: repo=git://github.com/rbenv/rbenv-each.git dest={{ rbenv_root }}/plugins/rbenv-each accept_hostkey=yes update=yes
 - name: install ruby-build
   git: repo=git://github.com/sstephenson/ruby-build.git dest={{ rbenv_root }}/plugins/ruby-build accept_hostkey=yes update=yes
 - name: update path
