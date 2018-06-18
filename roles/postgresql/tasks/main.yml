@@ -2,24 +2,26 @@
   command: test -x /var/lib/pgsql
   register: pg_data_exists
   ignore_errors: yes
+- name: dnf | add repo
+  dnf: name=https://download.postgresql.org/pub/repos/yum/9.6/fedora/fedora-{{ os_version }}-x86_64/pgdg-fedora96-9.6-4.noarch.rpm
 - name: dnf | install
   dnf: name={{item}} state=latest
   with_items:
-    - postgresql
-    - postgresql-libs
-    - postgresql-server
-    - postgresql-devel
-    - postgresql-contrib
+    - postgresql96
+    - postgresql96-libs
+    - postgresql96-server
+    - postgresql96-devel
+    - postgresql96-contrib
     - python-psycopg2
 - name: setup data directory
-  shell: postgresql-setup initdb
+  shell: /usr/pgsql-9.6/bin/postgresql96-setup initdb
   when: pg_data_exists|failed
 - name: local ipv4 md5 connection
-  replace: "dest=/var/lib/pgsql/data/pg_hba.conf regexp='127.0.0.1/32            ident' replace='127.0.0.1/32            md5'"
+  replace: "dest=/var/lib/pgsql/9.6/data/pg_hba.conf regexp='127.0.0.1/32            ident' replace='127.0.0.1/32            md5'"
 - name: local ipv6 md5 connection
-  replace: "dest=/var/lib/pgsql/data/pg_hba.conf regexp='::1/128                 ident' replace='::1/128                 md5'"
+  replace: "dest=/var/lib/pgsql/9.6/data/pg_hba.conf regexp='::1/128                 ident' replace='::1/128                 md5'"
 - name: restart
-  service: name=postgresql state=restarted enabled=true
+  service: name=postgresql-9.6 state=restarted enabled=true
 - name: set current user as superuser
   become: true
   become_user: postgres
