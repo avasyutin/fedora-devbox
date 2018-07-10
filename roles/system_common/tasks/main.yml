@@ -63,6 +63,7 @@
     - zlib-devel
     - zsh
     - fzf
+    - ripgrep
 - name: install tmuxp
   pip:
     name: tmuxp
