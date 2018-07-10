@@ -62,6 +62,7 @@
     - zlib
     - zlib-devel
     - zsh
+    - fzf
 - name: install tmuxp
   pip:
     name: tmuxp
