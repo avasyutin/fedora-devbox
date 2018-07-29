@@ -3,3 +3,4 @@ global_gems:
   - bundler
   - rails
   - ripper-tags
+  - rb-readline
