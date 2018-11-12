@@ -5,17 +5,18 @@
 - name: dnf | add repo
   dnf: name=https://download.postgresql.org/pub/repos/yum/9.6/fedora/fedora-{{ os_version }}-x86_64/pgdg-fedora96-9.6-4.noarch.rpm
 - name: dnf | install
-  dnf: name={{item}} state=latest
-  with_items:
-    - postgresql96
-    - postgresql96-libs
-    - postgresql96-server
-    - postgresql96-devel
-    - postgresql96-contrib
-    - python-psycopg2
+  dnf:
+    name:
+      - postgresql96
+      - postgresql96-libs
+      - postgresql96-server
+      - postgresql96-devel
+      - postgresql96-contrib
+      - python-psycopg2
+    state: latest
 - name: setup data directory
   shell: /usr/pgsql-9.6/bin/postgresql96-setup initdb
-  when: pg_data_exists|failed
+  when: pg_data_exists is failed
 - name: local ipv4 md5 connection
   replace: "dest=/var/lib/pgsql/9.6/data/pg_hba.conf regexp='127.0.0.1/32            ident' replace='127.0.0.1/32            md5'"
 - name: local ipv6 md5 connection

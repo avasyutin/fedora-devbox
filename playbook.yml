@@ -6,7 +6,8 @@
     - { role: redis, tags: redis }
     - { role: nodejs, tags: node }
     - { role: postgresql, tags: pg }
-    - { role: docker, tags: docker }
+    # FIXME: Enable docker when package will be available for F29
+    # - { role: docker, tags: docker }
     - { role: rabbitmq, tags: mq }
 
 - hosts: all

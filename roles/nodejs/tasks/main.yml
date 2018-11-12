@@ -1,8 +1,9 @@
 - name: dnf | install
-  dnf: name={{item}} state=latest
-  with_items:
-    - nodejs
-    - npm
+  dnf:
+    name:
+      - nodejs
+      - npm
+    state: latest
 - name: packages | install
   npm: name={{item}} global=yes
   with_items:

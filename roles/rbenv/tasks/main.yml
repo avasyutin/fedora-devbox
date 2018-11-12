@@ -10,10 +10,10 @@
   git: repo=git://github.com/sstephenson/ruby-build.git dest={{ rbenv_root }}/plugins/ruby-build accept_hostkey=yes update=yes
 - name: update path
   shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/{{ dev_user }}/.bashrc
-  when: rbenv_installed|failed
+  when: rbenv_installed is failed
 - name: init
   shell: echo 'eval "$(rbenv init -)"' >> /home/{{ dev_user }}/.bashrc
-  when: rbenv_installed|failed
+  when: rbenv_installed is failed
 - name: check ruby installed
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv versions | grep {{ ruby_version }}
   register: ruby_installed
@@ -22,9 +22,9 @@
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv install {{ ruby_version }}
   args:
     executable: /bin/bash
-  when: ruby_installed|failed
+  when: ruby_installed is failed
 - name: set global ruby
-  when: ruby_installed|failed
+  when: ruby_installed is failed
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv global {{ ruby_version }}
 - name: rehash
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/bin:$PATH" rbenv rehash
@@ -33,7 +33,7 @@
 - name: update rubygems
   shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem update --system
 - name: update installed gems
-  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem update
+  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem update -N -f
 - name: install gems
-  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem install -f {{ item }}
+  shell: RBENV_ROOT={{ rbenv_root }} PATH="$RBENV_ROOT/versions/{{ ruby_version }}/bin:$PATH" gem install -N -f {{ item }}
   with_items: '{{ global_gems }}'
