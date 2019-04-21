@@ -3,7 +3,7 @@
   register: pg_data_exists
   ignore_errors: yes
 - name: dnf | add repo
-  dnf: name=https://download.postgresql.org/pub/repos/yum/11/fedora/fedora-{{ os_version }}-x86_64/pgdg-fedora11-11-2.noarch.rpm
+  dnf: name=https://yum.postgresql.org/11/fedora/fedora-{{ os_version }}-x86_64/pgdg-fedora-repo-latest.noarch.rpm
 - name: dnf | install
   dnf:
     name:
@@ -23,8 +23,13 @@
   replace: "dest=/var/lib/pgsql/11/data/pg_hba.conf regexp='::1/128                 ident' replace='::1/128                 md5'"
 - name: restart
   service: name=postgresql-11 state=restarted enabled=true
+- name: create remote_tmp
+  file:
+    path: /var/lib/pgsql/.ansible/tmp
+    state: directory
+    mode: 0777
+    owner: postgres
 - name: set current user as superuser
-  become: true
   become_user: postgres
   postgresql_user: 'name={{dev_user}} state=present role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION'
 - name: create db for current user
