@@ -61,6 +61,7 @@
       - tmux
       - unzip
       - vim
+      - vim-X11
       - zip
       - zlib
       - zlib-devel

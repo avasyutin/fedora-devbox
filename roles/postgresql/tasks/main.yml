@@ -36,3 +36,8 @@
   become: true
   become_user: postgres
   postgresql_db: 'name={{dev_user}}'
+- name: link pg_config
+  alternatives:
+    name: pg_config
+    link: /usr/bin/pg_config
+    path: /usr/pgsql-11/bin/pg_config
