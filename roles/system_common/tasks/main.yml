@@ -67,6 +67,8 @@
       - zsh
       - fzf
       - ripgrep
+      - libatomic
+      - libXScrnSaver
     state: latest
 - name: install tmuxp
   pip:

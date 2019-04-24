@@ -4,3 +4,4 @@ global_gems:
   - rails
   - ripper-tags
   - rb-readline
+  - colorize

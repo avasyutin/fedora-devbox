@@ -7,7 +7,7 @@
     - { role: nodejs, tags: node }
     - { role: postgresql, tags: pg }
     - { role: docker, tags: docker }
-    - { role: rabbitmq, tags: mq }
+    # - { role: rabbitmq, tags: mq }
 
 - hosts: all
   become: true
