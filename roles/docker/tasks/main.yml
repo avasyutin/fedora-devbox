@@ -19,3 +19,12 @@
     dest: /usr/local/bin/docker-compose
     mode: 0755
     force: yes
+- name: Ensure group "docker" exists
+  group:
+    name: docker
+    state: present
+- name: Append user to "docker" group
+  user:
+    name: '{{ dev_user }}'
+    groups: docker
+    append: yes
