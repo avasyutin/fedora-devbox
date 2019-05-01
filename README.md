@@ -2,10 +2,9 @@
 
 ## Preprequisites
 
-1. Setup sudo without password.
-2. Install ansible.
-3. Install python3-dnf.
-4. Install libselinux-python.
+```bash
+sudo dnf install ansible python3-dnf python3-psycopg2 libselinux-python
+```
 
 ## Run
 
