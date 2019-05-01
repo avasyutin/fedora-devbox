@@ -4,7 +4,7 @@
 
 1. Setup sudo without password.
 2. Install ansible.
-3. Install python2-dnf.
+3. Install python3-dnf.
 4. Install libselinux-python.
 
 ## Run
