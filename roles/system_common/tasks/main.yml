@@ -26,7 +26,6 @@
       - cowsay
       - ctags
       - discount
-      - emacs
       - fedora-packager
       - fortune-mod
       - fuse-exfat
@@ -52,7 +51,6 @@
       - readline
       - readline-devel
       - ruby
-      - sbt
       - sqlite
       - sqlite-devel
       - strace

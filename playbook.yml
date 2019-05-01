@@ -1,16 +1,20 @@
 - hosts: all
   become: true
   become_user: root
+  vars:
+    ansible_python_interpreter: /usr/bin/env python3
   roles:
     - { role: system_common, tags: system }
     - { role: redis, tags: redis }
     - { role: nodejs, tags: node }
     - { role: postgresql, tags: pg }
-    - { role: docker, tags: docker }
+    # - { role: docker, tags: docker }
     # - { role: rabbitmq, tags: mq }
 
 - hosts: all
   become: true
   become_user: '{{ dev_user }}'
+  vars:
+    ansible_python_interpreter: /usr/bin/env python3
   roles:
     - { role: rbenv, tags: ruby }
