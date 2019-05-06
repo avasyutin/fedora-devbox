@@ -65,7 +65,7 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   shell_script = <<-SHELL
-    sudo dnf install -y python python2-dnf libselinux-python
+    sudo dnf install -y python python2-dnf libselinux-python python3-psycopg2
   SHELL
   
   opts = {
