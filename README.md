@@ -3,7 +3,7 @@
 ## Preprequisites
 
 ```bash
-sudo dnf install ansible python3-dnf python3-psycopg2 libselinux-python
+sudo dnf install ansible python-dnf python3-psycopg2
 ```
 
 ## Run
