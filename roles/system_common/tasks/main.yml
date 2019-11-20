@@ -34,7 +34,7 @@
       - htop
       - iftop
       - iotop
-      - java-openjdk-devel
+      - java-1.8.0-openjdk-devel
       - kernel-devel
       - libcurl
       - libcurl-devel
