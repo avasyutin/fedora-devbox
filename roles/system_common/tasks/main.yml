@@ -68,6 +68,7 @@
       - ripgrep
       - libatomic
       - libXScrnSaver
+      - xclip
     state: latest
 - name: install tmuxp
   pip:
