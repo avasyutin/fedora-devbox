@@ -84,7 +84,7 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "playbook.yml"
     ansible.raw_arguments = [
       '--extra-vars',
-      'dev_user=vagrant'
+      'user=vagrant'
     ]
   end
 end

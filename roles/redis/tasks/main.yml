@@ -1,4 +1,0 @@
-- name: 'dnf | install'
-  dnf: name=redis state=latest
-- name: 'restart'
-  action: service name=redis state=restarted enabled=yes

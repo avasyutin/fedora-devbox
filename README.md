@@ -12,7 +12,7 @@ sudo dnf install ansible python-dnf python3-psycopg2
 2. You HAVE TO pass a developer account name as command line parameter.
 
 ```bash
-$ sudo ansible-playbook -i inventory.ini playbook.yml --extra-vars='dev_user=johndoe'
+$ sudo ansible-playbook -i inventory.ini playbook.yml --extra-vars='user=johndoe'
 ```
 
 ## Hints

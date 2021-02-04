@@ -4,16 +4,11 @@
   dnf: name="@Development tools" state=present
 - name: install plugins core
   dnf: name=dnf-plugins-core state=latest
-- name: get Fedora version
-  command: rpm -E %fedora
-  register: fedora_version
-  args:
-    warn: false
 - name: install rpmfusion
   dnf:
     name:
-      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ os_version }}.noarch.rpm"
-      - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ os_version }}.noarch.rpm"
+      - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ os_version }}.noarch.rpm"
+      - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ os_version }}.noarch.rpm"
     state: latest
 - name: install dependencies
   dnf:
@@ -74,6 +69,6 @@
 - name: Set max_max_user_watches
   sysctl:
     name: fs.inotify.max_user_watches
-    value: 524288
+    value: '524288'
     state: present
     reload: yes

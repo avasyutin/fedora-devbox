@@ -1,4 +1,4 @@
-rbenv_root: '/home/{{dev_user}}/.rbenv'
+rbenv_root: /home/{{ user }}/.rbenv
 global_gems:
   - bundler
   - rails

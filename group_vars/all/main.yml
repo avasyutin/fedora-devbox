@@ -1,3 +1,4 @@
 ruby_version: 2.7.2
-dev_user: alexv
+user: alexv
 os_version: '{{ lookup("pipe", "rpm -E %fedora") }}'
+    
